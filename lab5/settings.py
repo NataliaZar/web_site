@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'lab5.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dj_db',
-        'USER': 'dbuser',
-        'PASSWORD': '123',
+        'NAME': 'toysecret$dj_db',
+        'USER': 'toysecret',
+        'PASSWORD': 'toysecret1234',
         'HOST': 'localhost',
         'PORT': 3306,
         'OPTIONS': {'charset': 'utf8'},
