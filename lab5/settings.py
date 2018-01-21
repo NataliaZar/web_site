@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'toysecret$dj_db',
         'USER': 'toysecret',
         'PASSWORD': 'toysecret1234',
-        'HOST': 'localhost',
+        'HOST': 'toysecret.mysql.pythonanywhere-services.com',
         'PORT': 3306,
         'OPTIONS': {'charset': 'utf8'},
         'TEST_CHARSET': 'utf8',
