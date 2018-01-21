@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}Товар № {{ prodact.prodact_name}}{% endblock %}
+
+{% block content %}
+
+{% csrf_token %}
+
+<div class="container">
+    <div id="customer_username" style="display: none">{{ customer.user.username }}</div>
+    <div id="customer_name" style="display: none">{{ customer.last_name }} {{ customer.first_name }}</div>
+    <div class="row">
+        <div class="col-md-3">
+            {% if category is not None %}
+                <div class="mytext"><h4>Категории:</h4></div>
+                <div class="list-group">
+                {% for cat in category %}
+                    <li class="list-group-item">
+                        {{ cat }}
+                    </li>
+                {% endfor %}
+                </div>
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-9">
+        <div class="well thumbnail">
+            <p class="mytext lead" id="prodact_name">{{ prodact.prodact_name }}</p>
+            {% load static  %}
+            <img class="img-responsive" src="{{ prodact.img.url }}" style="max-width: 300px" >
+            <div class="caption-full">
+                <p> {{ prodact.description }}</p>
+                <h4 class="pull-right">Цена за единицу: <div id="price" >{{ prodact.price }} руб.</div></h4>
+
+                <br>
+                <br>
+                <br>
+                <h4 class="mytext" id="last_order_header" hidden="True">Ваши последние заказы:</h4>
+                <table class="table" id="last_order" onload="load_last_order()"></table>
+                <div id="prod_id" style="display: none"> {{ prodact.id }}</div>
+            </div>
+        </div>
+
+            <div class="well">
+            <div class="text-right">
+                <a class="btn btn-primary btn_modal_order" style="margin-top: 10px;">
+                    Заказать
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+            </div>
+            <!-- HTML-код модального окна -->
+            <div id="modalOrder" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Заголовок модального окна -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Заказ товара</h4>
+                        </div>
+                        <!-- Основное содержимое модального окна -->
+                        <div class="modal-body">
+                            <form id="order_form" method="POST" class="form-horizontal" enctype="multipart/form-data" >
+
+                                {% for field in order_form %}
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}" class="col-sm-3 control-label">{{ field.label }}:</label>
+                                    <div class="col-sm-9">
+                                        {{ field }}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <div id="success_order" class="alert alert-success" role="alert" hidden="True"></div>
+                            </form>
+                        </div>
+                        <!-- Футер модального окна -->
+                        <div class="modal-footer">
+                            <button id="btn_close" type="button" class="pull-left btn btn-primary" data-dismiss="modal">Закрыть</button>
+                            <button id="btn_order"  type="button" class="btn btn-primary">Заказать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
+
