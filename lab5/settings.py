@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djsite$default',
         'USER': 'djsite',
-        'PASSWORD': 'admin',
+        'PASSWORD': 'admin1234',
         'HOST': 'djsite.mysql.pythonanywhere-services.com',
         'PORT': 3306,
         'OPTIONS': {'charset': 'utf8'},
